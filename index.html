@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL Programming - Main Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .chapters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .chapter {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chapter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .chapter h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            font-size: 1.5em;
+        }
+
+        .chapter h3 {
+            color: #34495e;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+        }
+
+        .links {
+            list-style: none;
+        }
+
+        .links li {
+            margin-bottom: 8px;
+        }
+
+        .links a {
+            display: block;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #3498db;
+        }
+
+        .links a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateX(5px);
+            border-left-color: #2980b9;
+        }
+
+        .special-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .special-section h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e74c3c;
+        }
+
+        .footer {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #3498db;
+            color: #2c3e50;
+            padding: 8px 16px;
+            margin: 0 2px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .lang-btn.active {
+            background: #e74c3c;
+            border-color: #c0392b;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .chapters {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="switchLanguage('ru')">RU</button>
+        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 data-ru="WebGL Программирование" data-en="WebGL Programming">WebGL Programming</h1>
+            <p data-ru="Трехмерная графика в браузере - Интерактивные примеры" data-en="3D Graphics in Browser - Interactive Examples">3D Graphics in Browser - Interactive Examples</p>
+        </div>
+
+        <div class="chapters">
+            <div class="chapter">
+                <h2 data-ru="📚 Приложение (Appendix)" data-en="📚 Appendix">📚 Appendix</h2>
+                <ul class="links">
+                    <li><a href="Appendix/CoordinateSystem.html" data-ru="Система координат" data-en="Coordinate System">Coordinate System</a></li>
+                    <li><a href="Appendix/CoordinateSystem_viewVolume.html" data-ru="Система координат - Объем обзора" data-en="Coordinate System - View Volume">Coordinate System - View Volume</a></li>
+                    <li><a href="Appendix/LoadShaderFromFiles.html" data-ru="Загрузка шейдеров из файлов" data-en="Load Shaders from Files">Load Shaders from Files</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h2 data-ru="🔵 Глава 2 - Основы WebGL" data-en="🔵 Chapter 2 - WebGL Basics">🔵 Chapter 2 - WebGL Basics</h2>
+                <ul class="links">
+                    <li><a href="ch02/ClickedPoints.html" data-ru="Точки по клику" data-en="Clicked Points">Clicked Points</a></li>
+                    <li><a href="ch02/ColoredPoints.html" data-ru="Цветные точки" data-en="Colored Points">Colored Points</a></li>
+                    <li><a href="ch02/DrawRectangle.html" data-ru="Рисование прямоугольника" data-en="Draw Rectangle">Draw Rectangle</a></li>
+                    <li><a href="ch02/HelloCanvas.html" data-ru="Привет, Canvas" data-en="Hello Canvas">Hello Canvas</a></li>
+                    <li><a href="ch02/HelloPoint1.html" data-ru="Привет, точка 1" data-en="Hello Point 1">Hello Point 1</a></li>
+                    <li><a href="ch02/HelloPoint2.html" data-ru="Привет, точка 2" data-en="Hello Point 2">Hello Point 2</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h2 data-ru="🔺 Глава 3 - Примитивы и трансформации" data-en="🔺 Chapter 3 - Primitives and Transformations">🔺 Chapter 3 - Primitives and Transformations</h2>
+                <ul class="links">
+                    <li><a href="ch03/HelloQuad.html" data-ru="Привет, четырехугольник" data-en="Hello Quad">Hello Quad</a></li>
+                    <li><a href="ch03/HelloQuad_FAN.html" data-ru="Четырехугольник - FAN" data-en="Quad - FAN">Quad - FAN</a></li>
+                    <li><a href="ch03/HelloTriangle.html" data-ru="Привет, треугольник" data-en="Hello Triangle">Hello Triangle</a></li>
+                    <li><a href="ch03/HelloTriangle_LINE_LOOP.html" data-ru="Треугольник - LINE_LOOP" data-en="Triangle - LINE_LOOP">Triangle - LINE_LOOP</a></li>
+                    <li><a href="ch03/HelloTriangle_LINE_STRIP.html" data-ru="Треугольник - LINE_STRIP" data-en="Triangle - LINE_STRIP">Triangle - LINE_STRIP</a></li>
+                    <li><a href="ch03/HelloTriangle_LINES.html" data-ru="Треугольник - LINES" data-en="Triangle - LINES">Triangle - LINES</a></li>
+                    <li><a href="ch03/MultiPoint.html" data-ru="Множественные точки" data-en="Multi Point">Multi Point</a></li>
+                    <li><a href="ch03/RotatedTriangle.html" data-ru="Повернутый треугольник" data-en="Rotated Triangle">Rotated Triangle</a></li>
+                    <li><a href="ch03/RotatedTriangle_Matrix.html" data-ru="Повернутый треугольник - Матрица" data-en="Rotated Triangle - Matrix">Rotated Triangle - Matrix</a></li>
+                    <li><a href="ch03/ScaledTriangle_Matrix.html" data-ru="Масштабированный треугольник - Матрица" data-en="Scaled Triangle - Matrix">Scaled Triangle - Matrix</a></li>
+                    <li><a href="ch03/TranslatedTriangle.html" data-ru="Перемещенный треугольник" data-en="Translated Triangle">Translated Triangle</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h2 data-ru="🔄 Глава 4 - Анимация и матрицы" data-en="🔄 Chapter 4 - Animation and Matrices">🔄 Chapter 4 - Animation and Matrices</h2>
+                <ul class="links">
+                    <li><a href="ch04/RotatedRotatedTriangle.html" data-ru="Повернутый перемещенный треугольник" data-en="Rotated Translated Triangle">Rotated Translated Triangle</a></li>
+                    <li><a href="ch04/RotatedTriangle_Matrix4.html" data-ru="Повернутый треугольник - Matrix4" data-en="Rotated Triangle - Matrix4">Rotated Triangle - Matrix4</a></li>
+                    <li><a href="ch04/RotatingTriangle.html" data-ru="Вращающийся треугольник" data-en="Rotating Triangle">Rotating Triangle</a></li>
+                    <li><a href="ch04/RotatingTriangle_withButtons.html" data-ru="Вращающийся треугольник с кнопками" data-en="Rotating Triangle with Buttons">Rotating Triangle with Buttons</a></li>
+                    <li><a href="ch04/RotatingTranslatedTriangle.html" data-ru="Вращающийся перемещенный треугольник" data-en="Rotating Translated Triangle">Rotating Translated Triangle</a></li>
+                    <li><a href="ch04/TranslatedRotatedTriangle.html" data-ru="Перемещенный повернутый треугольник" data-en="Translated Rotated Triangle">Translated Rotated Triangle</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h2 data-ru="🎨 Глава 5 - Цвета и текстуры" data-en="🎨 Chapter 5 - Colors and Textures">🎨 Chapter 5 - Colors and Textures</h2>
+                <ul class="links">
+                    <li><a href="ch05/ColoredTriangle.html" data-ru="Цветной треугольник" data-en="Colored Triangle">Colored Triangle</a></li>
+                    <li><a href="ch05/HelloTriangle_FragCoord.html" data-ru="Треугольник - FragCoord" data-en="Triangle - FragCoord">Triangle - FragCoord</a></li>
+                    <li><a href="ch05/MultiAttributeColor.html" data-ru="Множественные атрибуты цвета" data-en="Multi Attribute Color">Multi Attribute Color</a></li>
+                    <li><a href="ch05/MultiAttributeSize.html" data-ru="Множественные атрибуты размера" data-en="Multi Attribute Size">Multi Attribute Size</a></li>
+                    <li><a href="ch05/MultiAttributeSize_Interleaved.html" data-ru="Множественные атрибуты размера - Переплетенные" data-en="Multi Attribute Size - Interleaved">Multi Attribute Size - Interleaved</a></li>
+                    <li><a href="ch05/MultiTexture.html" data-ru="Множественные текстуры" data-en="Multi Texture">Multi Texture</a></li>
+                    <li><a href="ch05/TexturedQuad.html" data-ru="Текстурированный четырехугольник" data-en="Textured Quad">Textured Quad</a></li>
+                    <li><a href="ch05/TexturedQuad_Clamp_Mirror.html" data-ru="Текстурированный четырехугольник - Clamp/Mirror" data-en="Textured Quad - Clamp/Mirror">Textured Quad - Clamp/Mirror</a></li>
+                    <li><a href="ch05/TexturedQuad_Repeat.html" data-ru="Текстурированный четырехугольник - Repeat" data-en="Textured Quad - Repeat">Textured Quad - Repeat</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h2 data-ru="📐 Глава 7 - 3D объекты и перспектива" data-en="📐 Chapter 7 - 3D Objects and Perspective">📐 Chapter 7 - 3D Objects and Perspective</h2>
+                <ul class="links">
+                    <li><a href="ch07/3DoverWeb.html" data-ru="3D через Web" data-en="3D over Web">3D over Web</a></li>
+                    <li><a href="ch07/ColoredCube.html" data-ru="Цветной куб" data-en="Colored Cube">Colored Cube</a></li>
+                    <li><a href="ch07/ColoredCube_singleColor.html" data-ru="Цветной куб - Один цвет" data-en="Colored Cube - Single Color">Colored Cube - Single Color</a></li>
+                    <li><a href="ch07/DepthBuffer.html" data-ru="Буфер глубины" data-en="Depth Buffer">Depth Buffer</a></li>
+                    <li><a href="ch07/Fog.html" data-ru="Туман" data-en="Fog">Fog</a></li>
+                    <li><a href="ch07/Fog_w.html" data-ru="Туман - w" data-en="Fog - w">Fog - w</a></li>
+                    <li><a href="ch07/FramebufferObject.html" data-ru="Объект буфера кадров" data-en="Framebuffer Object">Framebuffer Object</a></li>
+                    <li><a href="ch07/HelloCube.html" data-ru="Привет, куб" data-en="Hello Cube">Hello Cube</a></li>
+                    <li><a href="ch07/HelloCube_singleColor.html" data-ru="Привет, куб - Один цвет" data-en="Hello Cube - Single Color">Hello Cube - Single Color</a></li>
+                    <li><a href="ch07/LookAtBlendedTriangles.html" data-ru="LookAt смешанные треугольники" data-en="LookAt Blended Triangles">LookAt Blended Triangles</a></li>
+                    <li><a href="ch07/LookAtRotatedTriangles.html" data-ru="LookAt повернутые треугольники" data-en="LookAt Rotated Triangles">LookAt Rotated Triangles</a></li>
+                    <li><a href="ch07/LookAtRotatedTriangles_mvMatrix.html" data-ru="LookAt повернутые треугольники - mvMatrix" data-en="LookAt Rotated Triangles - mvMatrix">LookAt Rotated Triangles - mvMatrix</a></li>
+                    <li><a href="ch07/LookAtTriangles.html" data-ru="LookAt треугольники" data-en="LookAt Triangles">LookAt Triangles</a></li>
+                    <li><a href="ch07/LookAtTrianglesWithKeys.html" data-ru="LookAt треугольники с клавишами" data-en="LookAt Triangles with Keys">LookAt Triangles with Keys</a></li>
+                    <li><a href="ch07/LookAtTrianglesWithKeys_ViewVolume.html" data-ru="LookAt треугольники с клавишами - Объем обзора" data-en="LookAt Triangles with Keys - View Volume">LookAt Triangles with Keys - View Volume</a></li>
+                    <li><a href="ch07/OBJViewer.html" data-ru="Просмотрщик OBJ" data-en="OBJ Viewer">OBJ Viewer</a></li>
+                    <li><a href="ch07/OrthoView.html" data-ru="Ортогональный вид" data-en="Ortho View">Ortho View</a></li>
+                    <li><a href="ch07/OrthoView_halfSize.html" data-ru="Ортогональный вид - Половина размера" data-en="Ortho View - Half Size">Ortho View - Half Size</a></li>
+                    <li><a href="ch07/OrthoView_halfWidth.html" data-ru="Ортогональный вид - Половина ширины" data-en="Ortho View - Half Width">Ortho View - Half Width</a></li>
+                    <li><a href="ch07/PerspectiveView.html" data-ru="Перспективный вид" data-en="Perspective View">Perspective View</a></li>
+                    <li><a href="ch07/PerspectiveView_mvp.html" data-ru="Перспективный вид - MVP" data-en="Perspective View - MVP">Perspective View - MVP</a></li>
+                    <li><a href="ch07/PerspectiveView_mvpMatrix.html" data-ru="Перспективный вид - MVP матрица" data-en="Perspective View - MVP Matrix">Perspective View - MVP Matrix</a></li>
+                    <li><a href="ch07/PickFace.html" data-ru="Выбор грани" data-en="Pick Face">Pick Face</a></li>
+                    <li><a href="ch07/PickObject.html" data-ru="Выбор объекта" data-en="Pick Object">Pick Object</a></li>
+                    <li><a href="ch07/Picking.html" data-ru="Выбор" data-en="Picking">Picking</a></li>
+                    <li><a href="ch07/ProgramObject.html" data-ru="Объект программы" data-en="Program Object">Program Object</a></li>
+                    <li><a href="ch07/RotateObject.html" data-ru="Поворот объекта" data-en="Rotate Object">Rotate Object</a></li>
+                    <li><a href="ch07/RotatingTriangle_contextLost.html" data-ru="Вращающийся треугольник - Потеря контекста" data-en="Rotating Triangle - Context Lost">Rotating Triangle - Context Lost</a></li>
+                    <li><a href="ch07/RoundedPoints.html" data-ru="Закругленные точки" data-en="Rounded Points">Rounded Points</a></li>
+                    <li><a href="ch07/Shadow.html" data-ru="Тень" data-en="Shadow">Shadow</a></li>
+                    <li><a href="ch07/Shadow_highp.html" data-ru="Тень - highp" data-en="Shadow - highp">Shadow - highp</a></li>
+                    <li><a href="ch07/Shadow_highp_sphere.html" data-ru="Тень - highp сфера" data-en="Shadow - highp Sphere">Shadow - highp Sphere</a></li>
+                    <li><a href="ch07/Zfighting.html" data-ru="Z-борьба" data-en="Z-fighting">Z-fighting</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h2 data-ru="💡 Глава 8 - Освещение" data-en="💡 Chapter 8 - Lighting">💡 Chapter 8 - Lighting</h2>
+                <ul class="links">
+                    <li><a href="ch08/LightedCube.html" data-ru="Освещенный куб" data-en="Lighted Cube">Lighted Cube</a></li>
+                    <li><a href="ch08/LightedCube_ambient.html" data-ru="Освещенный куб - Окружающий" data-en="Lighted Cube - Ambient">Lighted Cube - Ambient</a></li>
+                    <li><a href="ch08/LightedCube_animation.html" data-ru="Освещенный куб - Анимация" data-en="Lighted Cube - Animation">Lighted Cube - Animation</a></li>
+                    <li><a href="ch08/LightedCube_perFragment.html" data-ru="Освещенный куб - По фрагментам" data-en="Lighted Cube - Per Fragment">Lighted Cube - Per Fragment</a></li>
+                    <li><a href="ch08/LightedTranslatedRotatedCube.html" data-ru="Освещенный перемещенный повернутый куб" data-en="Lighted Translated Rotated Cube">Lighted Translated Rotated Cube</a></li>
+                    <li><a href="ch08/PointLightedCube.html" data-ru="Куб с точечным освещением" data-en="Point Lighted Cube">Point Lighted Cube</a></li>
+                    <li><a href="ch08/PointLightedCube_animation.html" data-ru="Куб с точечным освещением - Анимация" data-en="Point Lighted Cube - Animation">Point Lighted Cube - Animation</a></li>
+                    <li><a href="ch08/PointLightedCube_perFragment.html" data-ru="Куб с точечным освещением - По фрагментам" data-en="Point Lighted Cube - Per Fragment">Point Lighted Cube - Per Fragment</a></li>
+                    <li><a href="ch08/PointLightedSphere.html" data-ru="Сфера с точечным освещением" data-en="Point Lighted Sphere">Point Lighted Sphere</a></li>
+                    <li><a href="ch08/PointLightedSphere_perFragment.html" data-ru="Сфера с точечным освещением - По фрагментам" data-en="Point Lighted Sphere - Per Fragment">Point Lighted Sphere - Per Fragment</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h2 data-ru="🦴 Глава 9 - Скелетная анимация" data-en="🦴 Chapter 9 - Skeletal Animation">🦴 Chapter 9 - Skeletal Animation</h2>
+                <ul class="links">
+                    <li><a href="ch09/JointModel.html" data-ru="Модель сустава" data-en="Joint Model">Joint Model</a></li>
+                    <li><a href="ch09/MultiJointModel.html" data-ru="Множественная модель суставов" data-en="Multi Joint Model">Multi Joint Model</a></li>
+                    <li><a href="ch09/MultiJointModel_segment.html" data-ru="Множественная модель суставов - Сегмент" data-en="Multi Joint Model - Segment">Multi Joint Model - Segment</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter">
+                <h2 data-ru="🌟 Глава 10 - Продвинутые техники" data-en="🌟 Chapter 10 - Advanced Techniques">🌟 Chapter 10 - Advanced Techniques</h2>
+                <ul class="links">
+                    <li><a href="ch10/3DoverWeb.html" data-ru="3D через Web" data-en="3D over Web">3D over Web</a></li>
+                    <li><a href="ch10/BlendedCube.html" data-ru="Смешанный куб" data-en="Blended Cube">Blended Cube</a></li>
+                    <li><a href="ch10/Fog.html" data-ru="Туман" data-en="Fog">Fog</a></li>
+                    <li><a href="ch10/Fog_w.html" data-ru="Туман - w" data-en="Fog - w">Fog - w</a></li>
+                    <li><a href="ch10/FramebufferObject.html" data-ru="Объект буфера кадров" data-en="Framebuffer Object">Framebuffer Object</a></li>
+                    <li><a href="ch10/HUD.html" data-ru="HUD (Головной дисплей)" data-en="HUD (Head-Up Display)">HUD (Head-Up Display)</a></li>
+                    <li><a href="ch10/LookAtBlendedTriangles.html" data-ru="LookAt смешанные треугольники" data-en="LookAt Blended Triangles">LookAt Blended Triangles</a></li>
+                    <li><a href="ch10/OBJViewer.html" data-ru="Просмотрщик OBJ" data-en="OBJ Viewer">OBJ Viewer</a></li>
+                    <li><a href="ch10/PickFace.html" data-ru="Выбор грани" data-en="Pick Face">Pick Face</a></li>
+                    <li><a href="ch10/PickObject.html" data-ru="Выбор объекта" data-en="Pick Object">Pick Object</a></li>
+                    <li><a href="ch10/Picking.html" data-ru="Выбор" data-en="Picking">Picking</a></li>
+                    <li><a href="ch10/ProgramObject.html" data-ru="Объект программы" data-en="Program Object">Program Object</a></li>
+                    <li><a href="ch10/RotateObject.html" data-ru="Поворот объекта" data-en="Rotate Object">Rotate Object</a></li>
+                    <li><a href="ch10/RotatingTriangle_contextLost.html" data-ru="Вращающийся треугольник - Потеря контекста" data-en="Rotating Triangle - Context Lost">Rotating Triangle - Context Lost</a></li>
+                    <li><a href="ch10/RoundedPoints.html" data-ru="Закругленные точки" data-en="Rounded Points">Rounded Points</a></li>
+                    <li><a href="ch10/Shadow.html" data-ru="Тень" data-en="Shadow">Shadow</a></li>
+                    <li><a href="ch10/Shadow_highp.html" data-ru="Тень - highp" data-en="Shadow - highp">Shadow - highp</a></li>
+                    <li><a href="ch10/Shadow_highp_sphere.html" data-ru="Тень - highp сфера" data-en="Shadow - highp Sphere">Shadow - highp Sphere</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="special-section">
+            <h2 data-ru="🎁 Дополнительные примеры (Gifts)" data-en="🎁 Additional Examples (Gifts)">🎁 Additional Examples (Gifts)</h2>
+            <ul class="links">
+                <li><a href="gifts/Particle.html" data-ru="Частицы" data-en="Particle">Particle</a></li>
+                <li><a href="gifts/Printf.html" data-ru="Printf" data-en="Printf">Printf</a></li>
+                <li><a href="gifts/SpecularCube.html" data-ru="Зеркальный куб" data-en="Specular Cube">Specular Cube</a></li>
+                <li><a href="gifts/TextTexture.html" data-ru="Текстовая текстура" data-en="Text Texture">Text Texture</a></li>
+                <li><a href="gifts/ThreeDUI.html" data-ru="3D интерфейс" data-en="3D UI">3D UI</a></li>
+                <li><a href="gifts/Wave.html" data-ru="Волна" data-en="Wave">Wave</a></li>
+                <li><a href="gifts/WorldCoordinate.html" data-ru="Мировые координаты" data-en="World Coordinate">World Coordinate</a></li>
+            </ul>
+        </div>
+
+        <div class="special-section">
+            <h2 data-ru="📚 Книги и Ресурсы" data-en="📚 Books and Resources">📚 Books and Resources</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #3498db;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">📘 WebGL Programming Guide (English)</h3>
+                    <p style="color: #7f8c8d; margin-bottom: 15px;" data-ru="Авторы: Kouichi Matsuda, Rodger Lea" data-en="Authors: Kouichi Matsuda, Rodger Lea">Authors: Kouichi Matsuda, Rodger Lea</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="Kouichi Matsuda, Rodger Lea - WebGL Programming Guide - 2013.pdf" target="_blank" style="background: #e74c3c; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;">📥 Download PDF</a>
+                        <a href="https://github.com/dhaiduk/WebGL/raw/main/Kouichi%20Matsuda%2C%20Rodger%20Lea%20-%20WebGL%20Programming%20Guide%20-%202013.pdf" target="_blank" style="background: #2c3e50; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;">🔗 GitHub</a>
+                        <a href="https://augmentedreality.by/webgl" target="_blank" style="background: #27ae60; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;">🌐 Website</a>
+                    </div>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #e74c3c;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">📗 WebGL Программирование (Русский)</h3>
+                    <p style="color: #7f8c8d; margin-bottom: 15px;" data-ru="Авторы: Мацуда Коичи, Ли Роджер" data-en="Authors: Мацуда Коичи, Ли Роджер">Authors: Мацуда Коичи, Ли Роджер</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="Мацуда Коичи, Ли Роджер - WebGL программирование трехмерной графики - 2015.pdf" target="_blank" style="background: #e74c3c; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;">📥 Скачать PDF</a>
+                        <a href="https://github.com/dhaiduk/WebGL/raw/main/%D0%9C%D0%B0%D1%86%D1%83%D0%B4%D0%B0%20%D0%9A%D0%BE%D0%B8%D1%87%D0%B8%2C%20%D0%9B%D0%B8%20%D0%A0%D0%BE%D0%B4%D0%B6%D0%B5%D1%80%20-%20WebGL%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D1%80%D0%B5%D1%85%D0%BC%D0%B5%D1%80%D0%BD%D0%BE%D0%B9%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%B8%20-%202015.pdf" target="_blank" style="background: #2c3e50; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;">🔗 GitHub</a>
+                        <a href="https://augmentedreality.by/webgl" target="_blank" style="background: #27ae60; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;">🌐 Сайт</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p data-ru="📖 Основано на книге 'WebGL программирование трехмерной графики' - Мацуда Коичи, Ли Роджер" data-en="📖 Based on 'WebGL Programming Guide' by Kouichi Matsuda, Rodger Lea">📖 Based on 'WebGL Programming Guide' by Kouichi Matsuda, Rodger Lea</p>
+            <p data-ru="🚀 Все примеры готовы к запуску в браузере с поддержкой WebGL" data-en="🚀 All examples are ready to run in WebGL-enabled browsers">🚀 All examples are ready to run in WebGL-enabled browsers</p>
+            <div style="margin-top: 20px;">
+                <a href="https://github.com/dhaiduk/WebGL" target="_blank" style="color: #3498db; text-decoration: none; margin: 0 15px; font-weight: bold;">🔗 GitHub Repository</a>
+                <a href="https://augmentedreality.by/webgl" target="_blank" style="color: #3498db; text-decoration: none; margin: 0 15px; font-weight: bold;">🌐 augmentedreality.by/webgl</a>
+                <a href="README.md" target="_blank" style="color: #3498db; text-decoration: none; margin: 0 15px; font-weight: bold;">📚 README.md</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Update language switcher buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update document language
+            document.documentElement.lang = lang;
+
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-ru][data-en]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${lang}`);
+            });
+
+            // Update page title
+            document.title = lang === 'ru' ? 'WebGL Программирование - Главная страница' : 'WebGL Programming - Main Page';
+        }
+
+        // Initialize with English by default
+        document.addEventListener('DOMContentLoaded', function() {
+            switchLanguage('en');
+        });
+    </script>
+</body>
+</html>
